@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --muted: hsl(240, 4.8%, 95.9%);
+  --muted-foreground: hsl(240, 3.8%, 46.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(240, 5.9%, 90%);
+  --input: hsl(240, 5.9%, 90%);
+  --primary: hsl(240, 9%, 10%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 4.8%, 95.9%);
+  --secondary-foreground: hsl(240, 5.9%, 10%);
+  --accent: hsl(240, 4.8%, 95.9%);
+  --accent-foreground: hsl(240, 5.9%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 5%, 64.9%);
+  --radius: 0.5rem;
+  
+  /* Terminal Theme Colors */
+  --terminal-bg: hsl(0, 0%, 0%);
+  --terminal-green: hsl(120, 100%, 50%);
+  --terminal-dark-green: hsl(120, 100%, 30%);
+  --terminal-yellow: hsl(60, 100%, 50%);
+  --terminal-red: hsl(0, 100%, 50%);
+  --terminal-blue: hsl(220, 100%, 60%);
+  --terminal-purple: hsl(280, 100%, 60%);
+  --terminal-cyan: hsl(180, 100%, 50%);
+  
+  /* Glassmorphism Theme Colors */
+  --glass-dark: hsl(0, 0%, 10%);
+  --glass-cyan: hsl(195, 100%, 50%);
+  --glass-purple: hsl(258, 90%, 66%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(0, 0%, 98%);
+  --primary-foreground: hsl(240, 5.9%, 10%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+/* Terminal Theme Styles */
+.theme-terminal {
+  --background: var(--terminal-bg);
+  --foreground: var(--terminal-green);
+  --card: hsl(0, 0%, 7%);
+  --card-foreground: var(--terminal-green);
+  --border: var(--terminal-dark-green);
+  --input: hsl(0, 0%, 7%);
+}
+
+/* Glassmorphism Theme Styles */
+.theme-glassmorphism {
+  --background: var(--glass-dark);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsla(0, 0%, 10%, 0.7);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: var(--glass-cyan);
+  --input: hsla(0, 0%, 10%, 0.7);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .terminal-font {
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  }
+  
+  .terminal-green {
+    color: var(--terminal-green);
+  }
+  
+  .terminal-dark-green {
+    color: var(--terminal-dark-green);
+  }
+  
+  .terminal-bg {
+    background-color: var(--terminal-bg);
+  }
+  
+  .terminal-yellow {
+    color: var(--terminal-yellow);
+  }
+  
+  .terminal-red {
+    color: var(--terminal-red);
+  }
+  
+  .terminal-blue {
+    color: var(--terminal-blue);
+  }
+  
+  .terminal-purple {
+    color: var(--terminal-purple);
+  }
+  
+  .terminal-cyan {
+    color: var(--terminal-cyan);
+  }
+  
+  .glass-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .animate-blink {
+    animation: blink 1s infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+/* Custom scrollbar for terminal theme */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--terminal-dark-green);
+  border-radius: 4px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-green);
+}
+
+/* Message bubble styles */
+.message-bubble {
+  @apply p-3 rounded-lg border-l-4;
+}
+
+.message-bubble.incoming {
+  @apply bg-gray-900 border-l-4 border-l-green-500 ml-4 rounded-l-none;
+}
+
+.message-bubble.outgoing {
+  @apply bg-green-500 bg-opacity-20 border-r-4 border-r-green-500 mr-4 rounded-r-none text-right;
+}
+
+.message-bubble.file {
+  @apply border-l-4 border-l-yellow-500;
+}
+
+.message-bubble.voice {
+  @apply border-l-4 border-l-purple-500;
+}
+
+/* Terminal prompt styles */
+.terminal-prompt {
+  @apply bg-gray-900 border border-green-800 rounded-lg overflow-hidden;
+}
+
+.terminal-prompt-header {
+  @apply flex items-center px-3 py-2 border-b border-gray-700;
+}
+
+.terminal-prompt-input {
+  @apply w-full bg-transparent text-green-500 placeholder-gray-500 px-3 py-2 resize-none focus:outline-none;
+}

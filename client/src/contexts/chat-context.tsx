@@ -82,7 +82,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         break;
       }
       
-      case 'message_expired': {
+      case 'message_deleted': {
         const { messageId } = wsMessage.payload;
         setMessages(prev => prev.filter(m => m.id !== messageId));
         break;

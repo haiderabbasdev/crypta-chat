@@ -132,7 +132,7 @@ export default function LoginPage() {
             <Button
               onClick={handleGenerateUsername}
               disabled={isGenerating}
-              className="w-full bg-text-green-500 text-black hover:bg-text-green-700 font-semibold font-mono"
+              className="w-full bg-green-500 text-black hover:bg-green-400 font-semibold font-mono"
             >
               {isGenerating ? (
                 <>
@@ -149,7 +149,7 @@ export default function LoginPage() {
           ) : (
             <Button
               onClick={handleConnect}
-              className="w-full bg-text-green-500 text-black hover:bg-text-green-700 font-semibold font-mono"
+              className="w-full bg-green-500 text-black hover:bg-green-400 font-semibold font-mono"
             >
               <Lock className="w-4 h-4 mr-2" />
               INITIALIZE SECURE SESSION

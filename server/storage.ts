@@ -13,7 +13,7 @@ export interface IStorage {
   getMessage(id: string): Promise<Message | undefined>;
   getMessagesByRoom(roomId: string): Promise<Message[]>;
   createMessage(message: Omit<Message, "id">): Promise<Message>;
-  deleteMessage(id: string): Promise<boolean>;
+  deleteMessage(id: string, broadcastFn?: (id: string) => void): Promise<boolean>;
   deleteExpiredMessages(): Promise<number>;
   
   // Chat Rooms
@@ -31,6 +31,7 @@ export class MemStorage implements IStorage {
   private messages: Map<string, Message> = new Map();
   private chatRooms: Map<string, ChatRoom> = new Map();
   private messageExpirationTimers: Map<string, NodeJS.Timeout> = new Map();
+  public onMessageDeleted?: (messageId: string) => void;
 
   constructor() {
     // Create default chat room
@@ -103,7 +104,7 @@ export class MemStorage implements IStorage {
       const timeUntilExpiration = newMessage.expiresAt - Date.now();
       if (timeUntilExpiration > 0) {
         const timer = setTimeout(() => {
-          this.deleteMessage(id);
+          this.deleteMessage(id, this.onMessageDeleted);
         }, timeUntilExpiration);
         this.messageExpirationTimers.set(id, timer);
       }
@@ -112,13 +113,29 @@ export class MemStorage implements IStorage {
     return newMessage;
   }
 
-  async deleteMessage(id: string): Promise<boolean> {
+  async deleteMessage(id: string, broadcastFn?: (id: string) => void): Promise<boolean> {
     const timer = this.messageExpirationTimers.get(id);
     if (timer) {
       clearTimeout(timer);
       this.messageExpirationTimers.delete(id);
     }
-    return this.messages.delete(id);
+    
+    const deleted = this.messages.delete(id);
+    
+    // Remove from room message lists
+    this.chatRooms.forEach((room) => {
+      const index = room.messages.indexOf(id);
+      if (index > -1) {
+        room.messages.splice(index, 1);
+      }
+    });
+    
+    // Broadcast deletion if function provided
+    if (deleted && broadcastFn) {
+      broadcastFn(id);
+    }
+    
+    return deleted;
   }
 
   async deleteExpiredMessages(): Promise<number> {

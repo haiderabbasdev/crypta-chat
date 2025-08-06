@@ -42,6 +42,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   }
 
+  // Set up message deletion callback
+  storage.onMessageDeleted = (messageId: string) => {
+    broadcastToAll({
+      type: 'message_deleted',
+      payload: { messageId }
+    });
+  };
+
   wss.on('connection', (ws: WebSocketWithUserId) => {
     console.log('New WebSocket connection');
 

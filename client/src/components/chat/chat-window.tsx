@@ -38,33 +38,100 @@ export default function ChatWindow() {
     const renderContent = () => {
       switch (message.type) {
         case 'file':
+          const handleFileDownload = () => {
+            if (message.metadata?.fileData) {
+              try {
+                // Decode base64 file data
+                const byteCharacters = atob(message.metadata.fileData);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                  byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: message.metadata.fileType || 'application/octet-stream' });
+                
+                // Create download link
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = message.metadata.filename || 'download';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+              } catch (error) {
+                console.error('Download failed:', error);
+              }
+            }
+          };
+          
           return (
             <div className="flex items-center space-x-2">
               <File className="w-4 h-4 text-yellow-400" />
-              <span className="text-green-500">{message.content}</span>
-              <Button size="sm" variant="ghost" className="text-green-500 hover:text-green-600">
-                <Download className="w-4 h-4" />
-              </Button>
+              <button 
+                onClick={handleFileDownload}
+                className="text-green-500 hover:text-green-300 underline cursor-pointer"
+              >
+                {message.metadata?.filename || message.content}
+              </button>
+              <span className="text-xs text-gray-500">
+                ({message.metadata?.fileSize ? `${Math.round(message.metadata.fileSize / 1024)}KB` : 'File'})
+              </span>
             </div>
           );
         
         case 'voice':
+          const handleVoicePlay = () => {
+            if (message.metadata?.audioData) {
+              try {
+                // Decode base64 audio data
+                const byteCharacters = atob(message.metadata.audioData);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                  byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: 'audio/wav' });
+                
+                // Create and play audio
+                const url = URL.createObjectURL(blob);
+                const audio = new Audio(url);
+                audio.play().catch(error => {
+                  console.error('Audio playback failed:', error);
+                });
+                
+                // Clean up URL after playback
+                audio.addEventListener('ended', () => {
+                  URL.revokeObjectURL(url);
+                });
+              } catch (error) {
+                console.error('Voice playback failed:', error);
+              }
+            }
+          };
+          
           return (
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Mic className="w-4 h-4 text-purple-400" />
                 <span className="text-green-500">{message.content}</span>
-                <Button size="sm" variant="ghost" className="text-purple-400 hover:text-purple-300">
+                <button 
+                  onClick={handleVoicePlay}
+                  className="text-purple-400 hover:text-purple-300 p-1 rounded"
+                >
                   <Play className="w-4 h-4" />
-                </Button>
+                </button>
               </div>
               {/* Audio visualization */}
               <div className="flex items-center space-x-1">
                 {Array.from({ length: 20 }, (_, i) => (
                   <div 
                     key={i}
-                    className="w-1 bg-purple-400 rounded"
-                    style={{ height: `${Math.random() * 20 + 4}px` }}
+                    className="w-1 bg-purple-400 rounded animate-pulse"
+                    style={{ 
+                      height: `${Math.random() * 20 + 4}px`,
+                      animationDelay: `${i * 100}ms`
+                    }}
                   />
                 ))}
               </div>

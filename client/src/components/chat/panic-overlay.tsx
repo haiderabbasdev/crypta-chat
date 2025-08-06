@@ -9,6 +9,8 @@ export default function PanicOverlay() {
       setCountdown(prev => {
         if (prev <= 1) {
           clearInterval(interval);
+          // Redirect to blank page when countdown reaches 0
+          window.location.href = "about:blank";
           return 0;
         }
         return prev - 1;

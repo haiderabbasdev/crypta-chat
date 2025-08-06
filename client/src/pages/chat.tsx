@@ -50,7 +50,29 @@ export default function ChatPage() {
   }
 
   return (
-    <div className={`h-screen flex ${theme}`}>
+    <div className={`h-screen flex ${theme} relative overflow-hidden`}>
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-black">
+        {/* Matrix-style grid */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: '30px 30px'
+          }}></div>
+        </div>
+        
+        {/* Subtle floating elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-1 h-1 bg-green-500 opacity-30 animate-pulse"></div>
+          <div className="absolute top-20 right-20 w-1 h-1 bg-green-400 opacity-20 animate-ping"></div>
+          <div className="absolute bottom-20 left-1/4 w-1 h-1 bg-green-600 opacity-25 animate-pulse"></div>
+          <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-green-300 opacity-30 animate-ping"></div>
+          <div className="absolute bottom-10 right-10 w-1 h-1 bg-green-500 opacity-20 animate-pulse"></div>
+        </div>
+      </div>
       {/* Settings button in top-right corner */}
       <div className="absolute top-4 right-4 z-10 flex items-center space-x-2">
         <Button
@@ -74,7 +96,7 @@ export default function ChatPage() {
       </div>
 
       {/* Main Chat Interface */}
-      <main className="flex-1 flex overflow-hidden">
+      <main className="flex-1 flex overflow-hidden relative z-10">
         <div className="flex-1 flex flex-col">
           <ChatWindow />
           <MessageInput />

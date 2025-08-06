@@ -166,20 +166,19 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     
     try {
       // Convert file to base64
-      const base64 = await new Promise<string>((resolve) => {
+      const base64 = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
+        reader.onload = () => {
+          const result = reader.result as string;
+          // Remove data URL prefix to get pure base64
+          const base64Data = result.split(',')[1];
+          resolve(base64Data);
+        };
+        reader.onerror = reject;
         reader.readAsDataURL(file);
       });
       
-      const fileData = {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        data: base64
-      };
-      
-      const encryptedContent = await encryptMessage(JSON.stringify(fileData));
+      const encryptedContent = await encryptMessage(`File: ${file.name}`);
       const expiresAt = expiresIn ? Date.now() + (expiresIn * 1000) : undefined;
       
       const message: Omit<Message, 'id'> = {
@@ -190,7 +189,12 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         timestamp: Date.now(),
         expiresAt,
         type: 'file',
-        metadata: { fileName: file.name, fileSize: file.size, fileType: file.type }
+        metadata: { 
+          filename: file.name, 
+          fileSize: file.size, 
+          fileType: file.type,
+          fileData: base64
+        }
       };
       
       sendWsMessage({
@@ -208,19 +212,20 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     if (!user || !roomId) return;
     
     try {
-      const base64 = await new Promise<string>((resolve) => {
+      // Convert audio to base64
+      const base64 = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
+        reader.onload = () => {
+          const result = reader.result as string;
+          // Remove data URL prefix to get pure base64
+          const base64Data = result.split(',')[1];
+          resolve(base64Data);
+        };
+        reader.onerror = reject;
         reader.readAsDataURL(audioBlob);
       });
       
-      const voiceData = {
-        data: base64,
-        duration: 0, // TODO: Calculate actual duration
-        type: audioBlob.type
-      };
-      
-      const encryptedContent = await encryptMessage(JSON.stringify(voiceData));
+      const encryptedContent = await encryptMessage(`Voice message`);
       const expiresAt = expiresIn ? Date.now() + (expiresIn * 1000) : undefined;
       
       const message: Omit<Message, 'id'> = {
@@ -231,7 +236,11 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         timestamp: Date.now(),
         expiresAt,
         type: 'voice',
-        metadata: { duration: voiceData.duration, fileSize: audioBlob.size }
+        metadata: {
+          audioData: base64,
+          duration: 0,
+          fileSize: audioBlob.size
+        }
       };
       
       sendWsMessage({

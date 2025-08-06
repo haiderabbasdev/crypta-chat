@@ -2,6 +2,16 @@
 
 Crypta is a secure, end-to-end encrypted chat application designed with a stealth-mode terminal aesthetic. The application provides real-time messaging with military-grade encryption, self-destructing messages, and panic mode functionality. Built as a full-stack web application using modern technologies, it prioritizes user privacy and security while maintaining an intuitive user experience disguised as a hacker terminal interface.
 
+## Recent Updates (January 2025)
+- ✅ Added beautiful "Love" theme with purple vibes and heart-shaped animations
+- ✅ Fixed button positioning overlaps with improved z-index management  
+- ✅ Enhanced file download and voice message playback with proper base64 handling
+- ✅ Created comprehensive multi-user testing guide with INVITE button
+- ✅ Implemented dynamic themed backgrounds (matrix grid + floating elements)
+- ✅ Added multi-user connection guide with URL sharing functionality
+- ✅ Fixed voice message recording and playback with proper audio blob conversion
+- ✅ Enhanced settings modal with new theme selection options
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
@@ -39,8 +49,10 @@ Preferred communication style: Simple, everyday language.
 ## Theme System
 - **Terminal Theme**: Black background with green monospace text mimicking hacker terminals
 - **Glassmorphism Theme**: Dark mode with translucent elements and neon accents
+- **Love Theme**: Purple vibes with pink accents, heart-shaped animations, and romantic styling
 - **Light Theme**: Professional appearance for stealth mode in office environments
 - **CSS Variables**: Dynamic theme switching with CSS custom properties
+- **Dynamic Backgrounds**: Theme-specific animated grids and floating elements
 
 # External Dependencies
 

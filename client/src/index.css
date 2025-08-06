@@ -38,6 +38,13 @@
   --glass-dark: hsl(0, 0%, 10%);
   --glass-cyan: hsl(195, 100%, 50%);
   --glass-purple: hsl(258, 90%, 66%);
+  
+  /* Love Theme Colors */
+  --love-dark: hsl(320, 25%, 8%);
+  --love-purple: hsl(300, 100%, 70%);
+  --love-pink: hsl(320, 100%, 80%);
+  --love-magenta: hsl(340, 100%, 65%);
+  --love-lavender: hsl(280, 70%, 85%);
 }
 
 .dark {
@@ -80,6 +87,22 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: var(--glass-cyan);
   --input: hsla(0, 0%, 10%, 0.7);
+}
+
+/* Love Theme Styles */
+.theme-love {
+  --background: var(--love-dark);
+  --foreground: var(--love-lavender);
+  --card: hsla(320, 25%, 15%, 0.8);
+  --card-foreground: var(--love-lavender);
+  --border: var(--love-purple);
+  --input: hsla(320, 25%, 15%, 0.8);
+  --primary: var(--love-purple);
+  --primary-foreground: hsl(320, 25%, 8%);
+  --secondary: var(--love-pink);
+  --secondary-foreground: hsl(320, 25%, 8%);
+  --accent: var(--love-magenta);
+  --accent-foreground: hsl(0, 0%, 98%);
 }
 
 @layer base {

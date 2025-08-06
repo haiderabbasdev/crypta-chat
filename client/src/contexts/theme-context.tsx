@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-type Theme = "theme-terminal" | "theme-glassmorphism" | "theme-light";
+type Theme = "theme-terminal" | "theme-glassmorphism" | "theme-light" | "theme-love";
 
 interface ThemeContextType {
   theme: Theme;

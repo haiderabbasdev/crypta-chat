@@ -35,6 +35,13 @@ export default function SettingsModal() {
       active: theme === "theme-glassmorphism"
     },
     {
+      id: "theme-love",
+      name: "Love",
+      description: "Purple Vibes",
+      preview: "bg-gradient-to-br from-purple-900 to-pink-900 border-purple-400",
+      active: theme === "theme-love"
+    },
+    {
       id: "theme-light",
       name: "Modern Light",
       description: "Professional",

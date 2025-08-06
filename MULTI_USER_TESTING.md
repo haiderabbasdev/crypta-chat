@@ -1,64 +1,65 @@
-# Testing Multi-User Chat in Crypta
+# Multi-User Testing Guide for Crypta
 
-## How to Test with Multiple Users
+## How to Test Multi-User Functionality
 
-Since Crypta is a real-time chat application, you can test the multi-user functionality easily:
+### Method 1: Incognito Window (Easiest)
+1. Open your current chat session
+2. Copy the URL from your browser
+3. Open a new **incognito/private window** in your browser
+4. Paste the URL and press Enter
+5. You'll get a different random username - you're now a second user!
 
-### Method 1: Multiple Browser Windows/Tabs
-1. Open your Crypta app in the current browser tab
-2. Open a new incognito/private browser window
-3. Navigate to the same URL in the incognito window
-4. Generate different anonymous identities in each window
-5. Both users will join the same "Main Terminal" chat room
+### Method 2: Different Browser
+1. Copy your chat URL
+2. Open a different browser (Chrome, Firefox, Safari, Edge)
+3. Paste the URL
+4. You'll appear as a different user
 
-### Method 2: Different Browsers
-1. Open Crypta in Chrome
-2. Open Crypta in Firefox/Safari/Edge
-3. Generate different usernames in each browser
-4. Test messaging between browsers
+### Method 3: Mobile Device
+1. Copy your chat URL
+2. Open it on your phone or tablet
+3. You'll join as a mobile user
 
-### Method 3: Different Devices
-1. Access Crypta from your computer
-2. Access Crypta from your phone/tablet using the same URL
-3. Generate different usernames on each device
+### Method 4: Share with Friends
+1. Click the **INVITE** button in the top-right corner
+2. Copy the chat URL shown in the popup
+3. Send it to friends via text, email, or any messaging app
+4. They'll join your chat room with random usernames
 
-## What to Test
+## What You Should See
 
-### Real-time Features
-- Send messages from one user - they appear instantly for the other user
-- Start typing in one window - typing indicator appears for other users
-- Test self-destructing messages with different timers (5s, 30s, 1min, etc.)
-- Try the panic mode (Ctrl+Shift+X) - should clear data and redirect
-
-### File Sharing
-- Upload files from one user
-- Download files as the other user
-- Test file size limits (10MB max)
-
-### Voice Notes
-- Record voice notes from one user
-- Play voice notes as the other user
-- Test voice quality and playback
-
-### Security Features
-- Messages are end-to-end encrypted
-- Each user has their own encryption keys
-- Anonymous usernames are generated randomly
-
-## Expected Behavior
-
-1. **User Join/Leave**: When a user joins or leaves, all other users see notifications
-2. **Message Sync**: All messages appear in real-time for all users
-3. **Message Expiration**: When messages expire, they disappear for all users simultaneously
-4. **Typing Indicators**: When someone types, others see "[username] is typing..."
-5. **Encryption**: Each message is encrypted with the recipient's public key
+✅ **Real-time messaging** - Messages appear instantly for all users
+✅ **User list** - Right sidebar shows all connected users
+✅ **Typing indicators** - See when others are typing
+✅ **Anonymous usernames** - Each user gets a unique random name
+✅ **File sharing** - Upload and download files between users
+✅ **Voice messages** - Record and play voice notes
+✅ **Self-destructing messages** - Messages auto-delete after set time
+✅ **Panic mode** - Ctrl+Shift+X clears everything for all users
 
 ## Troubleshooting
 
-If users don't see each other:
-- Make sure both are using the same chat URL
-- Check that both generated anonymous identities successfully
-- Refresh the page if WebSocket connection fails
-- Check browser console for any connection errors
+**Problem**: Not seeing other users
+- Make sure you're using different browser windows/devices
+- Check that you're using the same URL
+- Refresh both windows
 
-The app supports unlimited concurrent users in the same chat room!
+**Problem**: Messages not syncing
+- Check your internet connection
+- Look for the green "ACTIVE_SESSIONS" indicator
+- Try refreshing the page
+
+**Problem**: Files/Voice not working
+- Ensure you're using HTTPS (not HTTP)
+- Check browser permissions for microphone (voice notes)
+- Try with smaller files (under 10MB limit)
+
+## Security Features
+
+🔒 **End-to-end encryption** - All messages are encrypted on your device
+🔥 **Self-destructing** - Messages automatically delete after time expires
+⚡ **Panic mode** - Emergency data destruction with Ctrl+Shift+X
+👤 **Anonymous** - No registration required, random usernames only
+🌐 **Temporary** - No permanent storage, everything is in-memory
+
+Have fun testing! The chat supports unlimited users simultaneously.

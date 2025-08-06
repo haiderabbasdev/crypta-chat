@@ -1,0 +1,91 @@
+Build me a stealth-mode, end-to-end encrypted chat app named **Crypta** with the following requirements:
+
+---
+
+### 🧠 Core Concept:
+A beautiful, ultra-secure, stealthy chat app that:
+- Looks like a **hacker terminal** (black background + green monospace text)
+- Is fully responsive and interactive
+- Uses true end-to-end encryption
+- Supports panic mode, file sharing, and voice notes
+- Comes with a settings page for theme and security options
+
+---
+
+### 🔧 Tech Stack:
+- **Frontend**: React (with Vite) + TailwindCSS
+- **Backend**: Node.js + Express + WebSocket
+- **Encryption**: Web Crypto API (AES-GCM)
+- **Storage**: In-memory (for MVP)
+- **Media**: WebRTC or Audio API (for voice notes), base64/FileReader (for files)
+
+---
+
+### ✅ Core Features:
+1. **Anonymous Login**: Assign cool random names (e.g., "Cipher#8472").
+2. **Terminal Chat UI**:
+   - Full black background
+   - Green monospace font (like Ubuntu terminal or Matrix)
+   - Messages appear as "console logs"
+   - Looks like code to anyone shoulder-surfing
+
+3. **Real-time E2E Chat**:
+   - Use WebSocket for instant messaging
+   - Encrypt/decrypt messages on client-side using Web Crypto API
+
+4. **Self-Destruct Messages**:
+   - User sets a timer per message (5s to 1hr)
+   - Auto-delete from UI and memory
+
+5. **Panic Mode**:
+   - Pressing **Ctrl + Shift + X** immediately clears chat, local keys, and closes session
+   - Add red-text notification: "🔥 Panic mode activated"
+
+6. **File Sharing**:
+   - Secure file send between users (limit: 10MB)
+   - Client-side encryption before send
+
+7. **Voice Note Recording**:
+   - Record voice notes using browser Audio API
+   - Encrypt and send as audio blobs
+   - Play with custom player UI in terminal theme
+
+8. **Settings Page**:
+   - 🔘 **Themes**: 
+     - Terminal (default)
+     - Dark Glassmorphism
+     - Light Modern
+   - 🔐 **Security**:
+     - Hidden Vault Chats (require passcode to access)
+     - Toggle password lock on app open
+     - Optional 2FA (simple OTP via email or passphrase)
+   - 🧑‍💼 **Account** (optional):
+     - Allow creating a temporary or permanent account
+     - Store session in memory (or optional secure localStorage)
+
+---
+
+### 🎨 UI & UX Requirements:
+- Responsive on mobile & desktop
+- Animations: Typing, fade-in chat logs, message sent confirmation
+- Use TailwindCSS custom themes
+- React Context or Redux for state management
+
+---
+
+### 🧩 Task Flow (Start with):
+1. Scaffold project (Vite + React + TailwindCSS)
+2. Build Express + WebSocket backend
+3. Create terminal-style chat UI
+4. Add anonymous login system
+5. Setup WebSocket chat with client-side encryption
+6. Add self-destruct timers per message
+7. Add panic mode handler (Ctrl + Shift + X keybinding)
+8. Add file and voice note functionality
+9. Build settings page with theme/security/account options
+
+---
+
+Keep code modular, documented, and extensible.
+
+Let’s begin by scaffolding the project structure with folders: `/client` (React), `/server` (Node.js) inside the Replit project.

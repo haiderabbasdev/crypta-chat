@@ -1,0 +1,54 @@
+Create a beautiful, secure, and fully responsive end-to-end encrypted chat application named **Crypta**.
+
+---
+
+### 🎯 Core Objectives:
+- Sleek, aesthetic, modern UI (like Discord/Telegram)
+- Fully responsive design for desktop and mobile
+- Real-time encrypted chat with interactive animations
+
+---
+
+### 🔧 Tech Stack:
+- **Frontend**: React (with Vite) + TailwindCSS
+- **Backend**: Node.js + Express + WebSocket
+- **Encryption**: Web Crypto API (AES-GCM or RSA-OAEP)
+- **Storage**: In-memory (no DB)
+
+---
+
+### ✅ MVP Features:
+1. **Anonymous login** — auto-generate usernames like “User#1234”
+2. **Real-time messaging** — via WebSockets
+3. **End-to-End encryption** — encrypt messages client-side, decrypt on receiver's end using Web Crypto API
+4. **Self-destructing messages** — timer per message (5s, 30s, 1m, etc.)
+5. **Interactive UI** — message animations, hover effects, button feedback
+6. **Responsive layout** — works beautifully on phones, tablets, and desktops
+
+---
+
+### 🎨 Design Requirements:
+- Dark mode by default (glassmorphism or neon accent optional)
+- Message bubbles with timestamps and fade-in animation
+- Typing indicators (e.g., “User#1234 is typing...”)
+- Smooth transitions and interactive buttons
+- Use TailwindCSS with custom utility classes as needed
+
+---
+
+### 🧩 Step-by-Step Instructions:
+1. Scaffold a Vite + React project with TailwindCSS
+2. Set up the Node.js backend with Express + WebSocket support
+3. Connect frontend and backend using WebSockets
+4. Implement anonymous login
+5. Build chat UI (chat window, input field, user tags)
+6. Add E2E encryption using Web Crypto API
+7. Implement self-destruct timer per message (auto-delete after time)
+8. Add animations and responsive layout
+9. Test full experience within Replit live preview
+
+---
+
+Please write clean, modular, well-commented code. I want to be able to extend this later for features like voice notes and hidden vault chats.
+
+Let’s begin by scaffolding the entire project structure with frontend and backend folders inside Replit.

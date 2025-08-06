@@ -218,7 +218,7 @@ export default function MessageInput() {
           <div className="terminal-prompt">
             <div className="terminal-prompt-header">
               <span className="text-green-700 text-sm font-mono">
-                {JSON.parse(localStorage.getItem("crypta_username") || '""')}@crypta:~$
+                {localStorage.getItem("crypta_username") || "anonymous"}@crypta:~$
               </span>
               <span className="ml-2 text-green-500 animate-blink font-mono">|</span>
             </div>

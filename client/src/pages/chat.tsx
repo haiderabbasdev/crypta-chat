@@ -22,7 +22,7 @@ export default function ChatPage() {
     setShowSettings,
     connectToChat 
   } = useChat();
-  const { isPanicMode, activatePanicMode } = usePanicMode();
+  const { isPanicActivated, activatePanic } = usePanicMode();
 
   useEffect(() => {
     const savedUsername = localStorage.getItem("crypta_username");
@@ -50,51 +50,28 @@ export default function ChatPage() {
   }
 
   return (
-    <div className={`h-screen flex flex-col ${theme}`}>
-      {/* Header */}
-      <header className="bg-black border-b border-green-700 px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <Shield className="text-green-500 w-5 h-5" />
-            <span className="text-lg font-semibold font-mono text-green-500">
-              CRYPTA_TERMINAL_v2.1
-            </span>
-          </div>
-          <div className="text-xs text-green-700 font-mono">
-            <span className={connectionStatus === 'connected' ? 'text-green-500' : 'terminal-red'}>
-              {connectionStatus.toUpperCase()}
-            </span>
-            {" | "}
-            <span className={encryptionStatus === 'active' ? 'text-green-500' : 'terminal-red'}>
-              {encryptionStatus === 'active' ? 'E2E_ENCRYPTED' : 'UNENCRYPTED'}
-            </span>
-          </div>
-        </div>
-        
-        <div className="flex items-center space-x-4">
-          <div className="text-xs text-green-700 font-mono">
-            Session: <span className="text-green-500">{user.username}</span>
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={activatePanicMode}
-            className="text-red-500 hover:text-red-400 border-red-500 hover:border-red-400 font-mono"
-            title="Ctrl+Shift+X"
-          >
-            <AlertTriangle className="w-4 h-4 mr-1" />
-            PANIC
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowSettings(true)}
-            className="text-green-500 hover:text-green-700"
-          >
-            <Settings className="w-4 h-4" />
-          </Button>
-        </div>
-      </header>
+    <div className={`h-screen flex ${theme}`}>
+      {/* Settings button in top-right corner */}
+      <div className="absolute top-4 right-4 z-10 flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={activatePanic}
+          className="text-red-500 hover:text-red-400 border-red-500 hover:border-red-400 font-mono"
+          title="Ctrl+Shift+X"
+        >
+          <AlertTriangle className="w-4 h-4 mr-1" />
+          PANIC
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowSettings(true)}
+          className="text-green-500 hover:text-green-700"
+        >
+          <Settings className="w-4 h-4" />
+        </Button>
+      </div>
 
       {/* Main Chat Interface */}
       <main className="flex-1 flex overflow-hidden">
@@ -107,7 +84,7 @@ export default function ChatPage() {
 
       {/* Modals */}
       {showSettings && <SettingsModal />}
-      {isPanicMode && <PanicOverlay />}
+      {isPanicActivated && <PanicOverlay />}
     </div>
   );
 }

@@ -74,12 +74,12 @@ export default function ChatPage() {
         </div>
       </div>
       {/* Settings button in top-right corner */}
-      <div className="absolute top-4 right-4 z-10 flex items-center space-x-2">
+      <div className="absolute top-4 right-4 z-50 flex items-center space-x-2">
         <Button
           variant="outline"
           size="sm"
           onClick={activatePanic}
-          className="text-red-500 hover:text-red-400 border-red-500 hover:border-red-400 font-mono"
+          className="text-red-500 hover:text-red-400 border-red-500 hover:border-red-400 font-mono bg-black/50"
           title="Ctrl+Shift+X"
         >
           <AlertTriangle className="w-4 h-4 mr-1" />
@@ -89,7 +89,7 @@ export default function ChatPage() {
           variant="ghost"
           size="sm"
           onClick={() => setShowSettings(true)}
-          className="text-green-500 hover:text-green-700"
+          className="text-green-500 hover:text-green-700 bg-black/50 border border-green-500/30"
         >
           <Settings className="w-4 h-4" />
         </Button>

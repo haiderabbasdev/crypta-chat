@@ -66,23 +66,7 @@ export default function UsersList() {
         )}
       </div>
       
-      {/* Connection Info */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-green-700 bg-gray-900">
-        <div className="text-xs text-green-700 font-mono space-y-1">
-          <div className="flex justify-between">
-            <span>Encryption:</span>
-            <span className="text-green-500">AES-256</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Protocol:</span>
-            <span className="text-green-500">WSS</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Status:</span>
-            <span className="text-green-500">SECURE</span>
-          </div>
-        </div>
-      </div>
+
     </aside>
   );
 }

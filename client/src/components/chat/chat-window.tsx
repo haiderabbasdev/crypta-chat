@@ -39,8 +39,10 @@ export default function ChatWindow() {
       switch (message.type) {
         case 'file':
           const handleFileDownload = () => {
+            console.log('File download clicked, metadata:', message.metadata);
             if (message.metadata?.fileData) {
               try {
+                console.log('File data found, length:', message.metadata.fileData.length);
                 // Decode base64 file data
                 const byteCharacters = atob(message.metadata.fileData);
                 const byteNumbers = new Array(byteCharacters.length);
@@ -49,6 +51,8 @@ export default function ChatWindow() {
                 }
                 const byteArray = new Uint8Array(byteNumbers);
                 const blob = new Blob([byteArray], { type: message.metadata.fileType || 'application/octet-stream' });
+                
+                console.log('Created blob:', blob.size, 'bytes, type:', blob.type);
                 
                 // Create download link
                 const url = URL.createObjectURL(blob);
@@ -59,9 +63,15 @@ export default function ChatWindow() {
                 link.click();
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
-              } catch (error) {
+                
+                console.log('Download triggered successfully');
+              } catch (error: any) {
                 console.error('Download failed:', error);
+                alert('Download failed: ' + (error?.message || 'Unknown error'));
               }
+            } else {
+              console.log('No file data found in metadata');
+              alert('No file data available');
             }
           };
           
@@ -82,8 +92,10 @@ export default function ChatWindow() {
         
         case 'voice':
           const handleVoicePlay = () => {
+            console.log('Voice play clicked, metadata:', message.metadata);
             if (message.metadata?.audioData) {
               try {
+                console.log('Audio data found, length:', message.metadata.audioData.length);
                 // Decode base64 audio data
                 const byteCharacters = atob(message.metadata.audioData);
                 const byteNumbers = new Array(byteCharacters.length);
@@ -93,20 +105,38 @@ export default function ChatWindow() {
                 const byteArray = new Uint8Array(byteNumbers);
                 const blob = new Blob([byteArray], { type: 'audio/wav' });
                 
+                console.log('Created blob:', blob.size, 'bytes');
+                
                 // Create and play audio
                 const url = URL.createObjectURL(blob);
                 const audio = new Audio(url);
-                audio.play().catch(error => {
+                
+                audio.addEventListener('loadeddata', () => {
+                  console.log('Audio loaded successfully');
+                });
+                
+                audio.addEventListener('error', (e) => {
+                  console.error('Audio error:', e);
+                });
+                
+                audio.play().then(() => {
+                  console.log('Audio playing');
+                }).catch((error: any) => {
                   console.error('Audio playback failed:', error);
+                  alert('Audio playback failed: ' + (error?.message || 'Unknown error'));
                 });
                 
                 // Clean up URL after playback
                 audio.addEventListener('ended', () => {
                   URL.revokeObjectURL(url);
                 });
-              } catch (error) {
+              } catch (error: any) {
                 console.error('Voice playback failed:', error);
+                alert('Voice playback error: ' + (error?.message || 'Unknown error'));
               }
+            } else {
+              console.log('No audio data found in metadata');
+              alert('No audio data available');
             }
           };
           

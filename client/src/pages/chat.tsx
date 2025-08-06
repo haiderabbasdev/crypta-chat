@@ -109,12 +109,15 @@ export default function ChatPage() {
           </div>
         )}
       </div>
-      {/* Action buttons in top-right corner */}
-      <div className="absolute top-4 right-80 z-50 flex items-center space-x-2">
+      {/* Action buttons in top-left corner to avoid overlap */}
+      <div className="absolute top-4 left-4 z-50 flex items-center space-x-2">
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => setShowMultiUserGuide(true)}
+          onClick={() => {
+            console.log('INVITE button clicked!');
+            setShowMultiUserGuide(true);
+          }}
           className="text-blue-400 hover:text-blue-300 bg-black/70 border border-blue-500/30 backdrop-blur-sm font-mono"
           title="Invite Users"
         >
@@ -141,12 +144,38 @@ export default function ChatPage() {
         </Button>
       </div>
 
-      {/* Main Chat Interface */}
+      {/* Main Chat Interface - Redesigned Layout */}
       <main className="flex-1 flex overflow-hidden relative z-10">
-        <div className="flex-1 flex flex-col">
-          <ChatWindow />
-          <MessageInput />
+        {/* Left side - Main chat area */}
+        <div className="flex-1 flex flex-col bg-black/20 backdrop-blur-sm border-r border-green-500/30">
+          {/* Chat header */}
+          <div className="bg-black/40 backdrop-blur-sm border-b border-green-500/30 p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <h1 className="text-green-500 font-mono text-lg font-bold">CRYPTA_TERMINAL</h1>
+                <div className="text-xs text-green-700 font-mono">
+                  [{new Date().toISOString().split('T')[0]}]
+                </div>
+              </div>
+              <div className="text-xs text-green-600 font-mono">
+                ENCRYPTION: ACTIVE • AES-256-GCM
+              </div>
+            </div>
+          </div>
+          
+          {/* Chat messages area */}
+          <div className="flex-1 relative">
+            <ChatWindow />
+          </div>
+          
+          {/* Message input area */}
+          <div className="border-t border-green-500/30 bg-black/40 backdrop-blur-sm">
+            <MessageInput />
+          </div>
         </div>
+        
+        {/* Right side - Users list */}
         <UsersList />
       </main>
 

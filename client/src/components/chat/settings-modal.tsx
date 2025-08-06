@@ -90,7 +90,10 @@ export default function SettingsModal() {
                       ? 'border-green-500 bg-black'
                       : 'border-gray-600 hover:border-cyan-400'
                   }`}
-                  onClick={() => setTheme(themeOption.id as any)}
+                  onClick={() => {
+                    console.log('Setting theme to:', themeOption.id);
+                    setTheme(themeOption.id as any);
+                  }}
                 >
                   <div className="text-center mb-3">
                     <div className={`w-full h-20 rounded border mb-2 relative overflow-hidden ${themeOption.preview}`}>
@@ -110,6 +113,17 @@ export default function SettingsModal() {
                             Messages
                           </div>
                           <div className="absolute bottom-1 right-1 w-8 h-1 bg-purple-400 rounded" />
+                        </>
+                      )}
+                      {themeOption.id === "theme-love" && (
+                        <>
+                          <div className="absolute top-1 left-1 text-xs text-purple-400">
+                            💜 Love
+                          </div>
+                          <div className="absolute bottom-1 right-1 w-6 h-6 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full animate-pulse" />
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-pink-300">
+                            ♥
+                          </div>
                         </>
                       )}
                       {themeOption.id === "theme-light" && (

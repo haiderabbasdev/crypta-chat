@@ -17,28 +17,31 @@ export const usePanicMode = () => {
   }, []);
 
   const activatePanic = () => {
-    // Clear all local storage
-    localStorage.clear();
-    sessionStorage.clear();
-
-    // Clear all indexedDB
-    if ('indexedDB' in window) {
-      window.indexedDB.databases?.().then((databases) => {
-        databases.forEach((db) => {
-          if (db.name) {
-            window.indexedDB.deleteDatabase(db.name);
-          }
-        });
-      });
-    }
-
-    // Set panic state
+    // Set panic state first
     setIsPanicActivated(true);
 
-    // Close window after 3 seconds
+    // Clear all data after a short delay
     setTimeout(() => {
-      window.close();
-    }, 3000);
+      // Clear all local storage
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // Clear all indexedDB
+      if ('indexedDB' in window) {
+        window.indexedDB.databases?.().then((databases) => {
+          databases.forEach((db) => {
+            if (db.name) {
+              window.indexedDB.deleteDatabase(db.name);
+            }
+          });
+        });
+      }
+
+      // Redirect to blank page after 3 seconds
+      setTimeout(() => {
+        window.location.href = "about:blank";
+      }, 2000);
+    }, 500);
   };
 
   return {

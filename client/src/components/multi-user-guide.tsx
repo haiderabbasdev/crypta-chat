@@ -25,8 +25,8 @@ export default function MultiUserGuide({ isOpen, onClose }: MultiUserGuideProps)
         </DialogHeader>
         
         <div className="space-y-4">
-          <div className="text-green-700 text-sm">
-            Share this URL with friends to join your chat room:
+          <div className="text-green-500 text-sm font-bold">
+            HOW TO CONNECT MULTIPLE USERS:
           </div>
           
           <div className="bg-gray-900 border border-green-700 rounded p-3 text-xs break-all">
@@ -40,26 +40,29 @@ export default function MultiUserGuide({ isOpen, onClose }: MultiUserGuideProps)
             Copy Chat URL
           </Button>
           
-          <div className="space-y-3 text-xs text-green-700">
+          <div className="space-y-3 text-xs text-green-700 bg-black/50 p-3 rounded border border-green-700/30">
+            <div className="text-green-500 font-bold mb-2">QUICK CONNECTION METHODS:</div>
             <div className="flex items-center space-x-2">
-              <Monitor className="w-4 h-4" />
-              <span>Open incognito window with this URL</span>
+              <Monitor className="w-4 h-4 text-blue-400" />
+              <span>1. Open an incognito window with this URL</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Smartphone className="w-4 h-4" />
-              <span>Share URL to friends' phones/tablets</span>
+              <Smartphone className="w-4 h-4 text-purple-400" />
+              <span>2. Share URL to friends' phones/tablets</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Globe className="w-4 h-4" />
-              <span>Works on any device with internet</span>
+              <Globe className="w-4 h-4 text-green-400" />
+              <span>3. Send link via any messaging app</span>
             </div>
           </div>
           
-          <div className="border-t border-green-700 pt-3 text-xs text-green-600">
-            <div>• Each user gets a unique anonymous identity</div>
-            <div>• All messages are end-to-end encrypted</div>
-            <div>• Real-time messaging and file sharing</div>
-            <div>• Self-destructing messages available</div>
+          <div className="border-t border-green-700 pt-3 text-xs">
+            <div className="text-green-500 font-bold mb-2">IMPORTANT NOTES:</div>
+            <div className="text-green-600">• Each user must enter a unique username</div>
+            <div className="text-green-600">• All users will connect to the same room</div>
+            <div className="text-green-600">• Messages are end-to-end encrypted</div>
+            <div className="text-green-600">• Files and voice messages are supported</div>
+            <div className="text-yellow-500 mt-2">• If connection fails, try refreshing the page</div>
           </div>
         </div>
       </DialogContent>

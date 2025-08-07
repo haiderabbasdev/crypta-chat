@@ -103,6 +103,12 @@
   --secondary-foreground: hsl(320, 25%, 8%);
   --accent: var(--love-magenta);
   --accent-foreground: hsl(0, 0%, 98%);
+  /* Enhanced love theme colors for better visibility */
+  --love-primary: hsl(300, 100%, 70%);
+  --love-secondary: hsl(320, 100%, 80%);
+  --love-accent: hsl(340, 100%, 65%);
+  --love-background: hsl(320, 25%, 8%);
+  --love-text: hsl(280, 70%, 85%);
 }
 
 @layer base {

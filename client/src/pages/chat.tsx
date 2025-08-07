@@ -110,7 +110,7 @@ export default function ChatPage() {
         )}
       </div>
       {/* Action buttons in top-left corner to avoid overlap */}
-      <div className="absolute top-4 left-4 z-50 flex items-center space-x-2">
+      <div className="absolute top-4 left-4 z-40 flex items-center space-x-2">
         <Button
           variant="ghost"
           size="sm"
@@ -152,13 +152,15 @@ export default function ChatPage() {
           <div className="bg-black/40 backdrop-blur-sm border-b border-green-500/30 p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <h1 className="text-green-500 font-mono text-lg font-bold">CRYPTA_TERMINAL</h1>
-                <div className="text-xs text-green-700 font-mono">
+                <div className={`w-3 h-3 rounded-full animate-pulse ${theme === 'theme-love' ? 'bg-purple-500' : 'bg-green-500'}`}></div>
+                <h1 className={`font-mono text-lg font-bold ${theme === 'theme-love' ? 'text-purple-400' : 'text-green-500'}`}>
+                  {theme === 'theme-love' ? 'CRYPTA_SECURE' : 'CRYPTA_TERMINAL'}
+                </h1>
+                <div className={`text-xs font-mono ${theme === 'theme-love' ? 'text-pink-700' : 'text-green-700'}`}>
                   [{new Date().toISOString().split('T')[0]}]
                 </div>
               </div>
-              <div className="text-xs text-green-600 font-mono">
+              <div className={`text-xs font-mono ${theme === 'theme-love' ? 'text-purple-400' : 'text-green-600'}`}>
                 ENCRYPTION: ACTIVE • AES-256-GCM
               </div>
             </div>
@@ -170,7 +172,7 @@ export default function ChatPage() {
           </div>
           
           {/* Message input area */}
-          <div className="border-t border-green-500/30 bg-black/40 backdrop-blur-sm">
+          <div className={`border-t bg-black/40 backdrop-blur-sm ${theme === 'theme-love' ? 'border-purple-500/30' : 'border-green-500/30'}`}>
             <MessageInput />
           </div>
         </div>

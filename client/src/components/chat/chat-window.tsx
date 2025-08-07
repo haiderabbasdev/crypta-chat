@@ -56,13 +56,24 @@ export default function ChatWindow() {
                 
                 // Create download link
                 const url = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = message.metadata.filename || 'download';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
+                
+                // For certain file types, open in a new tab instead of downloading
+                const fileType = message.metadata.fileType || 'application/octet-stream';
+                if (fileType.startsWith('image/') || fileType.startsWith('text/') || fileType === 'application/pdf') {
+                  // Open viewable files in a new tab
+                  window.open(url, '_blank');
+                  // Clean up URL after a delay
+                  setTimeout(() => URL.revokeObjectURL(url), 60000);
+                } else {
+                  // Download other file types
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = message.metadata.filename || 'download';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                }
                 
                 console.log('Download triggered successfully');
               } catch (error: any) {
@@ -103,7 +114,8 @@ export default function ChatWindow() {
                   byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
                 const byteArray = new Uint8Array(byteNumbers);
-                const blob = new Blob([byteArray], { type: 'audio/wav' });
+                // Try multiple audio formats to improve compatibility
+                const blob = new Blob([byteArray], { type: 'audio/webm;codecs=opus' });
                 
                 console.log('Created blob:', blob.size, 'bytes');
                 

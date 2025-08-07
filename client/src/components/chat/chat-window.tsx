@@ -230,9 +230,9 @@ export default function ChatWindow() {
         </div>
         <div className="message-bubble incoming">
           <div className="flex space-x-1">
-            <div className="w-2 h-2 bg-text-green-500 rounded-full animate-pulse" />
-            <div className="w-2 h-2 bg-text-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
-            <div className="w-2 h-2 bg-text-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
           </div>
         </div>
       </div>
@@ -242,16 +242,16 @@ export default function ChatWindow() {
   return (
     <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-black terminal-scrollbar">
       {/* System Boot Messages */}
-      <div className="text-text-green-700 text-xs animate-fade-in font-mono">
+      <div className="text-green-700 text-xs animate-fade-in font-mono">
         <span className="text-yellow-400">[SYSTEM]</span> Crypta Terminal initialized...
       </div>
-      <div className="text-text-green-700 text-xs animate-fade-in font-mono">
+      <div className="text-green-700 text-xs animate-fade-in font-mono">
         <span className="text-yellow-400">[CRYPTO]</span> End-to-end encryption: ACTIVE
       </div>
-      <div className="text-text-green-700 text-xs animate-fade-in font-mono">
+      <div className="text-green-700 text-xs animate-fade-in font-mono">
         <span className="text-yellow-400">[SESSION]</span> Anonymous user connected: {user?.username}
       </div>
-      <div className="text-text-green-700 text-xs animate-fade-in mb-4 font-mono">
+      <div className="text-green-700 text-xs animate-fade-in mb-4 font-mono">
         <span className="text-yellow-400">[READY]</span> Secure channel established. Type to begin...
       </div>
 

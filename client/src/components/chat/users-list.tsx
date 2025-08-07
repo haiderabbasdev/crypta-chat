@@ -28,7 +28,7 @@ export default function UsersList() {
             >
               {/* Status Indicator */}
               <div className={`w-2 h-2 rounded-full ${
-                isCurrentUser ? 'bg-text-green-500' : 'bg-blue-400'
+                isCurrentUser ? 'bg-green-500' : 'bg-blue-400'
               }`} />
               
               {/* User Info */}
@@ -60,7 +60,7 @@ export default function UsersList() {
         })}
         
         {users.length === 0 && (
-          <div className="text-center text-text-green-700 font-mono text-sm">
+          <div className="text-center text-green-700 font-mono text-sm">
             No active users
           </div>
         )}

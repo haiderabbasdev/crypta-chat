@@ -122,7 +122,7 @@ export default function MessageInput() {
       {showFileUpload && (
         <div className="bg-gray-900 border border-dashed border-green-700 rounded p-4 mb-4">
           <div className="text-center">
-            <Upload className="w-8 h-8 text-text-green-700 mb-2 mx-auto" />
+            <Upload className="w-8 h-8 text-green-700 mb-2 mx-auto" />
             <p className="text-green-700 text-sm font-mono">
               Drag & drop files here or click to browse
             </p>
@@ -138,7 +138,7 @@ export default function MessageInput() {
             <div className="flex justify-center space-x-2 mt-4">
               <Button
                 onClick={() => fileInputRef.current?.click()}
-                className="bg-text-green-500 text-black hover:bg-text-green-700 font-mono"
+                className="bg-green-500 text-black hover:bg-green-700 font-mono"
               >
                 Select File
               </Button>
@@ -258,7 +258,7 @@ export default function MessageInput() {
           <Button
             onClick={handleSendMessage}
             disabled={!message.trim()}
-            className="p-2 text-green-500 hover:text-text-green-700 border border-text-green-500 hover:border-green-700 bg-transparent disabled:opacity-50"
+            className="p-2 text-green-500 hover:text-green-700 border border-green-500 hover:border-green-700 bg-transparent disabled:opacity-50"
             title="Send Encrypted Message"
           >
             <Send className="w-4 h-4" />
